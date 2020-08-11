@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
 
 const Todo =(props)=>
 {
@@ -12,6 +14,14 @@ const Todo =(props)=>
     const todoAddHandler =()=>
     {
         setTodoList(todoList.concat(todoName));
+        axios.post('https://burger-app-7b4b5.firebaseio.com/todos.json',{name:todoName}).
+        then(Response=>
+            {
+                console.log(Response);
+            }).
+            catch(error=>{
+                console.log(error);
+            });
     };
     const keyPresshandler = event =>
     {
